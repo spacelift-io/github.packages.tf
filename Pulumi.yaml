@@ -1,0 +1,3 @@
+name: github.packages.tf
+runtime: nodejs
+description: Bridge between GitHub Releases and Terraform

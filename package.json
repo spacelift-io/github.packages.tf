@@ -1,0 +1,15 @@
+{
+    "name": "github.packages.tf",
+    "devDependencies": {
+        "@types/node": "^10.0.0"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^3.25.1",
+        "@pulumi/awsx": "^0.24.0",
+        "@pulumi/pulumi": "^2.0.0",
+        "axios": "^0.21.1",
+        "graphql": "^15.5.0",
+        "graphql-request": "^3.4.0",
+        "serialize-error": "^8.0.1"
+    }
+}
