@@ -6,12 +6,20 @@ export const LIST_RELEASES = gql`
       releases(first: 100, orderBy: { field: CREATED_AT, direction: DESC }) {
         nodes {
           name
-          description
           isDraft
           isPrerelease
           releaseAssets(first: 100) {
             nodes {
               filename: name
+            }
+          }
+          tagCommit {
+            protocols: file(path: "PROTOCOLS") {
+              object {
+                ... on Blob {
+                  text
+                }
+              }
             }
           }
         }
@@ -31,8 +39,13 @@ export const SHOW_RELEASE = gql`
   ) {
     repository(owner: $account, name: $repo) {
       release(tagName: $tag) {
-        description
+        asciiArmor: releaseAssets(first: 1, name: "key.asc") {
+          ...fileData
+        }
         download: releaseAssets(first: 1, name: $download) {
+          ...fileData
+        }
+        fingerprint: releaseAssets(first: 1, name: "key.fingerprint") {
           ...fileData
         }
         shasums: releaseAssets(first: 1, name: $shasums) {
@@ -40,6 +53,15 @@ export const SHOW_RELEASE = gql`
         }
         signature: releaseAssets(first: 1, name: $signature) {
           ...fileData
+        }
+        tagCommit {
+          protocols: file(path: "PROTOCOLS") {
+            object {
+              ... on Blob {
+                text
+              }
+            }
+          }
         }
       }
     }

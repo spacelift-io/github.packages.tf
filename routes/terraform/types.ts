@@ -11,9 +11,6 @@ export declare type Package = {
     gpg_public_keys: {
       key_id: string;
       ascii_armor: string;
-      source: string | undefined;
-      source_url: string | undefined;
-      trust_signature: string | undefined;
     }[]
   }
 }
