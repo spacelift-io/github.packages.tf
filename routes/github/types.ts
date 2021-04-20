@@ -8,7 +8,6 @@ export declare type ListReleasesResponse = {
 
 export declare type ListReleasesItem = {
   name: string;
-  description: string;
   isDraft: boolean;
   isPrerelease: boolean;
   releaseAssets: {
@@ -16,6 +15,7 @@ export declare type ListReleasesItem = {
       filename: string;
     }[];
   };
+  tagCommit: ProtocolsContent;
 };
 
 export declare type ShowReleaseResponse = {
@@ -25,10 +25,12 @@ export declare type ShowReleaseResponse = {
 };
 
 export declare type ShowReleaseDetails = {
-  description: string;
+  asciiArmor: ShowReleaseAsset;
   download: ShowReleaseAsset;
+  fingerprint: ShowReleaseAsset;
   shasums: ShowReleaseAsset;
   signature: ShowReleaseAsset;
+  tagCommit: ProtocolsContent;
 };
 
 export declare type ShowReleaseAsset = {
@@ -43,8 +45,13 @@ export declare type ReleaseDescription = {
   key: {
     key_id: string;
     ascii_armor: string;
-    source: string | undefined;
-    source_url: string | undefined;
-    trust_signature: string | undefined;
   };
+};
+
+export declare type ProtocolsContent = {
+  protocols: {
+    object: {
+      text: string;
+    }
+  }
 };
